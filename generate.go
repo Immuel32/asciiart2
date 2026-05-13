@@ -4,15 +4,22 @@ import (
 	"strings"
 )
 
-func GenerateAsciiArt(input string, banner map[rune][]string) string {
+func GenerateArt(input string, banner map[rune][]string) string {
+	if input == "" {
+		return ""
+	}
 	lines := strings.Split(input, "\n")
 	result := []string{}
+
+	hasArt := false
 
 	for _, line := range lines {
 		if line == "" {
 			result = append(result, "")
 			continue
 		}
+		hasArt = true
+
 		asciiLines := make([]string, 8)
 
 		for _, char := range line {
@@ -22,9 +29,14 @@ func GenerateAsciiArt(input string, banner map[rune][]string) string {
 			}
 			for i := 0; i < 8; i++ {
 				asciiLines[i] += art[i]
+
 			}
 		}
 		result = append(result, asciiLines...)
 	}
-	return strings.Join(result, "\n")
+	output := strings.Join(result, "\n")
+	if hasArt {
+		output += "\n"
+	}
+	return output
 }

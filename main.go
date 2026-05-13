@@ -19,7 +19,7 @@ func main() {
 		fmt.Println("error laoding file", err)
 		return
 	}
-	output := GenerateAsciiArt(input, banner)
+	output := GenerateArt(input, banner)
 
 	fmt.Print(output)
 }
